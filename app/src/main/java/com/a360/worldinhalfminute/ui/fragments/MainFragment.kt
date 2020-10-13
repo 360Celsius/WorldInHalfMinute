@@ -11,8 +11,10 @@ import com.a360.worldinhalfminute.R
 import com.a360.worldinhalfminute.databinding.FragmentMainBinding
 import com.a360.worldinhalfminute.viewmodels.ExternaIPViewModel
 import com.a360.worldinhalfminute.viewmodels.LocationDataByIPViewModel
-import com.a360.worldinhalfminute.viewmodels.ViewModelFactory
 import com.a360.worldinhalfminute.viewmodels.WorldNewsViewModel
+import com.a360.worldinhalfminute.viewmodels.factories.ExternaIPViewModelFactory
+import com.a360.worldinhalfminute.viewmodels.factories.LocationDataByIPFactory
+import com.a360.worldinhalfminute.viewmodels.factories.WorldNewsFactory
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.kodein
@@ -26,7 +28,11 @@ class MainFragment : Fragment(), KodeinAware{
     final override val kodeinContext = kcontext<Fragment>(this)
     final override val kodein: Kodein by kodein()
 
-    private val factory: ViewModelFactory by instance()
+    private val factoryExternaIP: ExternaIPViewModelFactory by instance()
+    private val factoryLocationDataByIP: LocationDataByIPFactory by instance()
+    private val factoryWorldNews: WorldNewsFactory by instance()
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,10 +43,12 @@ class MainFragment : Fragment(), KodeinAware{
         binding.setLifecycleOwner(this)
 
 
-        val externaIPViewModel = ViewModelProviders.of(this,factory).get(ExternaIPViewModel::class.java)
-        val locationDataByIPViewModel = ViewModelProviders.of(this,factory).get(LocationDataByIPViewModel::class.java)
-        val worldNewsViewModel = ViewModelProviders.of(this,factory).get(WorldNewsViewModel::class.java)
+        val externaIPViewModel = ViewModelProviders.of(this,factoryExternaIP).get(ExternaIPViewModel::class.java)
+        val locationDataByIPViewModel = ViewModelProviders.of(this,factoryLocationDataByIP).get(LocationDataByIPViewModel::class.java)
+        val worldNewsViewModel = ViewModelProviders.of(this,factoryWorldNews).get(WorldNewsViewModel::class.java)
 
+
+        externaIPViewModel.getexternalIP()
 
         return binding.root
     }
