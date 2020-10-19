@@ -12,10 +12,8 @@ import androidx.lifecycle.ViewModelProviders
 import com.a360.worldinhalfminute.R
 import com.a360.worldinhalfminute.databinding.FragmentMainBinding
 import com.a360.worldinhalfminute.viewmodels.ExternaIPViewModel
-import com.a360.worldinhalfminute.viewmodels.LocationDataByIPViewModel
 import com.a360.worldinhalfminute.viewmodels.WorldNewsViewModel
 import com.a360.worldinhalfminute.viewmodels.factories.ExternaIPViewModelFactory
-import com.a360.worldinhalfminute.viewmodels.factories.LocationDataByIPFactory
 import com.a360.worldinhalfminute.viewmodels.factories.WorldNewsFactory
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
@@ -31,7 +29,6 @@ class MainFragment : Fragment(), KodeinAware{
     final override val kodein: Kodein by kodein()
 
     private val factoryExternaIP: ExternaIPViewModelFactory by instance()
-    private val factoryLocationDataByIP: LocationDataByIPFactory by instance()
     private val factoryWorldNews: WorldNewsFactory by instance()
 
 
@@ -46,7 +43,6 @@ class MainFragment : Fragment(), KodeinAware{
 
 
         val externaIPViewModel = ViewModelProviders.of(this,factoryExternaIP).get(ExternaIPViewModel::class.java)
-        val locationDataByIPViewModel = ViewModelProviders.of(this,factoryLocationDataByIP).get(LocationDataByIPViewModel::class.java)
         val worldNewsViewModel = ViewModelProviders.of(this,factoryWorldNews).get(WorldNewsViewModel::class.java)
 
 
@@ -56,6 +52,7 @@ class MainFragment : Fragment(), KodeinAware{
                 Log.e("test", externalIpData.ip)
                 Log.e("test", externalIpData.country)
                 Log.e("test", externalIpData.cc)
+
             }
 
         })
