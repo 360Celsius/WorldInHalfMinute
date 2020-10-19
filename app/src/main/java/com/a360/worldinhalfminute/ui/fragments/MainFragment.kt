@@ -1,11 +1,13 @@
 package com.a360.worldinhalfminute.ui.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.a360.worldinhalfminute.R
 import com.a360.worldinhalfminute.databinding.FragmentMainBinding
@@ -49,6 +51,14 @@ class MainFragment : Fragment(), KodeinAware{
 
 
         externaIPViewModel.getexternalIP()
+        externaIPViewModel.getExternalIpDataFromDB().observe(viewLifecycleOwner, Observer { externalIpData ->
+            if(externalIpData != null){
+                Log.e("test", externalIpData.ip)
+                Log.e("test", externalIpData.country)
+                Log.e("test", externalIpData.cc)
+            }
+
+        })
 
         return binding.root
     }

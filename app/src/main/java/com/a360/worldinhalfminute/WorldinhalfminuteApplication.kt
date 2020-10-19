@@ -1,6 +1,7 @@
 package com.a360.worldinhalfminute
 
 import android.app.Application
+import com.a360.worldinhalfminute.data.db.DataBase
 import com.a360.worldinhalfminute.data.network.Externalapi
 import com.a360.worldinhalfminute.data.network.LocationDataByIPapi
 import com.a360.worldinhalfminute.data.network.WorldNewsApi
@@ -27,7 +28,10 @@ class WorldinhalfminuteApplication: Application(), KodeinAware {
         bind() from singleton { LocationDataByIPapi() }
         bind() from singleton { WorldNewsApi() }
 
-        bind() from singleton { ExternalIPRepository(instance()) }
+        bind() from singleton { DataBase(instance()) }
+
+
+        bind() from singleton { ExternalIPRepository(instance(),instance()) }
         bind() from singleton { LocationDataByIPRepository(instance()) }
         bind() from singleton { WorldNewsRepository(instance()) }
 
