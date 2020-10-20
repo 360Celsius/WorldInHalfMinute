@@ -53,6 +53,7 @@ class MainFragment : Fragment(), KodeinAware{
                 Log.e("test", externalIpData.country)
                 Log.e("test", externalIpData.cc)
 
+                worldNewsViewModel.getWorldNews("us")
             }
 
         })

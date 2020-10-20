@@ -28,7 +28,7 @@ class WorldinhalfminuteApplication: Application(), KodeinAware {
 
 
         bind() from singleton { ExternalIPRepository(instance(),instance()) }
-        bind() from singleton { WorldNewsRepository(instance()) }
+        bind() from singleton { WorldNewsRepository(instance(),instance()) }
 
         bind() from provider { ExternaIPViewModelFactory(instance()) }
         bind() from provider { WorldNewsFactory(instance()) }

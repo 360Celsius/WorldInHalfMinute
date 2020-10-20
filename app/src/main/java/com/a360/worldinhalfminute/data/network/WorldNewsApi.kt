@@ -6,11 +6,15 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.Query
 
-interface WorldNewsApi {
+interface WorldNewsApi {//8dbe4e0919d14caaa504a516d10f7ffd
 
-    @GET("top-headlines?country={countryId}&apiKey=8dbe4e0919d14caaa504a516d10f7ffd")
-    suspend fun getHeadlines(@Path("countryId") countryId: String): Response<ArticlesDataModel>
+    @GET("top-headlines")
+    suspend fun getHeadlines(
+        @Query("country") country: String,
+        @Query("apiKey") apiKey: String
+    ): Response<ArticlesDataModel>
 
     companion object{
         operator fun invoke(): WorldNewsApi {
