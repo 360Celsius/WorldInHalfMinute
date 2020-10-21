@@ -42,8 +42,8 @@ class WorldNewsViewModel (
     }
 
 
-    fun getWorldNewsFromDB(): LiveData<WorldNewsEntity> {
-        val worldNewsData: LiveData<WorldNewsEntity> = worldNewsRepository.getWorldNewsFromDB()
+    fun getWorldNewsFromDB(): LiveData<List<WorldNewsEntity>> {
+        val worldNewsData: LiveData<List<WorldNewsEntity>> = worldNewsRepository.getWorldNewsFromDB()
         return worldNewsData
     }
 

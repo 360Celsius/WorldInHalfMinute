@@ -23,7 +23,7 @@ class WorldNewsRepository (
         db.getWorldNewsDao().insertWorldNewsToDB(worldNewsEntity)
     }
 
-    fun getWorldNewsFromDB(): LiveData<WorldNewsEntity>{
+    fun getWorldNewsFromDB(): LiveData<List<WorldNewsEntity>>{
         return db.getWorldNewsDao().getWorldNewsFromDB()
     }
 }

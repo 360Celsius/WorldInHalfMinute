@@ -57,7 +57,7 @@ class MainFragment : Fragment(), KodeinAware{
 
                 worldNewsViewModel.getWorldNewsFromDB().observe(viewLifecycleOwner, Observer { worldNews ->
                     if(worldNews != null){
-                        Log.e("test", worldNews.title)
+                        
                     }
                 })
             }

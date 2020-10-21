@@ -15,5 +15,5 @@ interface WorldNewsDao {
     suspend fun insertWorldNewsToDB(worldNewsEntity: WorldNewsEntity)
 
     @Query("SELECT * FROM world_news")
-    fun getWorldNewsFromDB(): LiveData<WorldNewsEntity>
+    fun getWorldNewsFromDB(): LiveData<List<WorldNewsEntity>>
 }
