@@ -54,6 +54,12 @@ class MainFragment : Fragment(), KodeinAware{
                 Log.e("test", externalIpData.cc)
 
                 worldNewsViewModel.getWorldNews("us")
+
+                worldNewsViewModel.getWorldNewsFromDB().observe(viewLifecycleOwner, Observer { worldNews ->
+                    if(worldNews != null){
+                        Log.e("test", worldNews.title)
+                    }
+                })
             }
 
         })

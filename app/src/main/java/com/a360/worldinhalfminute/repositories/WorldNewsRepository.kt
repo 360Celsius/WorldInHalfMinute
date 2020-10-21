@@ -1,6 +1,8 @@
 package com.a360.worldinhalfminute.repositories
 
+import androidx.lifecycle.LiveData
 import com.a360.worldinhalfminute.data.db.DataBase
+import com.a360.worldinhalfminute.data.db.Entities.WorldNewsEntity
 import com.a360.worldinhalfminute.data.network.WorldNewsApi
 import com.a360.worldinhalfminute.data.network.datamodels.ArticlesDataModel
 import retrofit2.Response
@@ -15,5 +17,13 @@ class WorldNewsRepository (
     suspend fun getWorldNewsFromApi(countryId: String): Response<ArticlesDataModel>{
         val worldNews: Response<ArticlesDataModel> = worldNewsApi.getHeadlines(countryId,newsApiKey)
         return worldNews
+    }
+
+    suspend fun saveWorldNewsToDB(worldNewsEntity: WorldNewsEntity){
+        db.getWorldNewsDao().insertWorldNewsToDB(worldNewsEntity)
+    }
+
+    fun getWorldNewsFromDB(): LiveData<WorldNewsEntity>{
+        return db.getWorldNewsDao().getWorldNewsFromDB()
     }
 }

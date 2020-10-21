@@ -5,9 +5,10 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.a360.worldinhalfminute.data.db.Entities.ExternalIPEntity
+import com.a360.worldinhalfminute.data.db.Entities.WorldNewsEntity
 
 @Database(
-    entities = [ExternalIPEntity::class],
+    entities = [ExternalIPEntity::class, WorldNewsEntity::class],
     version = 1
 )
 
@@ -15,6 +16,7 @@ abstract class DataBase: RoomDatabase() {
 
 
     abstract fun getExternalIPDao(): ExternalIPDao
+    abstract fun getWorldNewsDao(): WorldNewsDao
 
     companion object{
 
